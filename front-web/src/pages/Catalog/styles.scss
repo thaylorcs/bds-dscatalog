@@ -11,7 +11,8 @@
 
 .catalog-products {
     margin-top: 43px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
+    display: grid;
+    grid-gap: 33px 30px;
+    grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: space-between;
 }
