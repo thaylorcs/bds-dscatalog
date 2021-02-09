@@ -1,49 +1,76 @@
+import { makeRequest } from 'core/utils/request';
 import React, { useState } from 'react';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
 
+type FormState = {
+    name: string;
+    price: string;
+    category: string;
+}
+
 const Form = () => {
 
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [category, setCategory] = useState('computadores');
+    const [formData, setFormData] = useState<FormState>({
+        name: '',
+        price: '',
+        category: ''
+    });
 
-    const handleOnChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value);
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        console.log({name, value})
+        setFormData(data => ({...data, [name]: value}));
     }
 
-    const handleOnChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPrice(event.target.value);
-    }
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const payload = {
+            ...formData,
+            imgUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fvigiadepreco.com.br%2Fp%2F6250005981369&psig=AOvVaw2jFfch0CMDLy-AUzWaZjYN&ust=1612970244339000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMiPgMqM3e4CFQAAAAAdAAAAABAD',
+            categories: [{id: formData.category}]
+        }
 
-    const handleOnChangeCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setName(event.target.value);
+        makeRequest({ url: '/products', method: 'POST', data: payload})
     }
 
     return (
-        <BaseForm title="Cadastrar um Produto">
-            <h1>Name: {name}</h1>
-            <h1>Price: {price}</h1>
+        <form onSubmit={handleSubmit}>
+            <BaseForm title="Cadastrar um Produto">
+            
             <div className="row">
                 <div className="col-6">
-                    <input 
+                    <input
+                        value={formData.name}
+                        name="name"
                         type="text" 
-                        className="form-control" 
-                        onChange={handleOnChangeName}
+                        className="form-control mb-5" 
+                        onChange={handleOnChange}
                     />
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        onChange={handleOnChangePrice}
-                    />
-                    <select value={category} className="form-control mb-5" onChange={handleOnChangeCategory}>
-                        <option value="livros">Livros</option>
-                        <option value="computadores">Computadores</option>
-                        <option value="eletronicos">Eletrônicos</option>
+                    <select
+                        value={formData.category}
+                        className="form-control mb-5" 
+                        onChange={handleOnChange}
+                        name="category"
+                    >
+                            <option value="1">Livros</option>
+                            <option value="2">Eletrônicos</option>
+                            <option value="3">Computadores</option>
                     </select>
+                    <input
+                        value={formData.price}
+                        name="price"
+                        type="text"
+                        className="form-control mb-5" 
+                        onChange={handleOnChange}
+                        placeholder="Preço"
+                    />
                 </div>
             </div>
-        </BaseForm>
+            </BaseForm>
+        </form>
     )
 }
 
