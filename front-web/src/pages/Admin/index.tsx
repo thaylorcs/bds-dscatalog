@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import './styles.scss';
-import Home from 'pages/Home';
 import Products from './components/Products';
 
 const Admin = () => (
