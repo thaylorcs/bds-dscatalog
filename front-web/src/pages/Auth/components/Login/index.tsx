@@ -7,7 +7,7 @@ import './styles.scss';
 import { makeLogin } from 'core/utils/request';
 
 type FormData = {
-    email: string;
+    username: string;
     password: string;
 }
 
@@ -17,7 +17,7 @@ const Login = () => {
 
     const onSubmit = (data: FormData) => {
         console.log(data);
-        //makeLogin(data);
+        makeLogin(data);
     }
 
     return (
@@ -27,7 +27,7 @@ const Login = () => {
                     type="email"
                     className="form-control input-base margin-bottom-30"
                     placeholder="Email"
-                    name="email"
+                    name="username"
                     ref={register}
                 />
                 <input
