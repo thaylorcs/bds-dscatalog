@@ -1,9 +1,10 @@
 import ButtonIcon from 'core/components/ButtonIcon';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import AuthCard from '../Card';
 import './styles.scss';
+import { makeLogin } from 'core/utils/request';
 
 type FormData = {
     email: string;
@@ -12,26 +13,29 @@ type FormData = {
 
 const Login = () => {
 
-    const {register, handleSubmit} = useForm<FormData>();
+    const { register, handleSubmit } = useForm<FormData>();
 
     const onSubmit = (data: FormData) => {
         console.log(data);
+        //makeLogin(data);
     }
 
     return (
         <AuthCard title="Login">
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-                <input 
+                <input
                     type="email"
-                    placeholder="Email"
                     className="form-control input-base margin-bottom-30"
-                    {...register('email')}
+                    placeholder="Email"
+                    name="email"
+                    ref={register}
                 />
-                <input 
+                <input
                     type="password"
                     placeholder="Senha"
                     className="form-control input-base"
-                    {...register('password')}
+                    name="password"
+                    ref={register}
                 />
                 <Link to="/admin/auth/recover" className="login-link-recover">
                     Esqueceu a senha?
@@ -41,7 +45,9 @@ const Login = () => {
                 </div>
                 <div className="text-center">
                     <span className="not-registered">Não tem Cadastro?</span>
-                    <Link to="/admin/auth/register" className="login-link-register">Cadastrar</Link>
+                    <Link to="/admin/auth/register" className="login-link-register">
+                        Cadastrar
+                    </Link>
                 </div>
             </form>
         </AuthCard>

@@ -1,4 +1,3 @@
-import Auth from 'pages/Auth';
 import React from 'react'
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import Navbar from './core/components/navbar';
@@ -6,6 +5,7 @@ import Admin from './pages/Admin';
 import Catalog from './pages/Catalog';
 import ProductDetails from './pages/Catalog/components/ProductDetails'
 import Home from './pages/Home'
+import Auth from 'pages/Auth';
 
 const Routes = () => (
     <BrowserRouter>
