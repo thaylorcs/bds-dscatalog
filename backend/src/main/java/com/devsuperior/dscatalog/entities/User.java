@@ -23,7 +23,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "tb_user")
-
 public class User implements UserDetails, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -95,8 +94,6 @@ public class User implements UserDetails, Serializable {
 		this.password = password;
 	}
 	
-	
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
