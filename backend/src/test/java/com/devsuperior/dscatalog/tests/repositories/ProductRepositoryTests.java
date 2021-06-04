@@ -44,7 +44,7 @@ public class ProductRepositoryTests {
 		Page<Product> result = repository.find(null, name, pageRequest);
 		
 		Assertions.assertFalse(result.isEmpty());
-		Assertions.assertEquals(countPCGamerProducts, result.getTotalElements());
+		Assertions.assertEquals(countTotalProducts, result.getTotalElements());
 	}
 	
 	@Test
