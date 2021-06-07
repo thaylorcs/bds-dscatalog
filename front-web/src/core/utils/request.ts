@@ -17,7 +17,7 @@ type LoginData = {
 
 const BASE_URL = 'http://localhost:8080';
 
-export const makeRequest = ({method = 'POST', url, data, params, headers} : RequestParams) => {
+export const makeRequest = ({method = 'GET', url, data, params, headers} : RequestParams) => {
     return axios({
         method,
         url: `${BASE_URL}${url}`,
@@ -32,7 +32,7 @@ export const makeLogin = (loginData: LoginData) => {
 
     const headers = {
         Authorization: `Basic ${window.btoa(token)}`,
-        'Content_Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
 
     const payload = qs.stringify({...loginData, grant_type: 'password'});
