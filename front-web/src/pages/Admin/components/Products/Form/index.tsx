@@ -1,4 +1,4 @@
-import { makeRequest } from 'core/utils/request';
+import { makePrivateRequest } from 'core/utils/request';
 import React, { useState } from 'react';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
@@ -7,17 +7,21 @@ type FormState = {
     name: string;
     price: string;
     category: string;
+    description: string;
 }
+
+type FormEvent = React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
 
 const Form = () => {
 
     const [formData, setFormData] = useState<FormState>({
         name: '',
         price: '',
-        category: ''
+        category: '1',
+        description: ''
     });
 
-    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleOnChange = (event: FormEvent) => {
         const name = event.target.name;
         const value = event.target.value;
 
@@ -33,7 +37,10 @@ const Form = () => {
             categories: [{id: formData.category}]
         }
 
-        makeRequest({ url: '/products', method: 'POST', data: payload})
+        makePrivateRequest({ url: '/products', method: 'POST', data: payload})
+        .then(() => {
+            setFormData({name: '', category: '', price: '', description: ''});
+        });
     }
 
     return (
@@ -66,6 +73,16 @@ const Form = () => {
                         className="form-control mb-5" 
                         onChange={handleOnChange}
                         placeholder="Preço"
+                    />
+                </div>
+                <div className="col-6">
+                    <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleOnChange}
+                        className="form-control"
+                        cols={30}
+                        rows={10}
                     />
                 </div>
             </div>
