@@ -1,34 +1,39 @@
 .main-nav {
+    align-items: center;
     color: white;
     height: 70px;
-    align-items: center;
-    padding-left: 40px;
     margin-left: 0;
     margin-right: 0;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
-.nav-logo-text{
+.nav-logo-text {
     color: #fff;
 }
 
 .main-menu {
     display: flex;
+    justify-content: center;
+
+    li:nth-child(2) {
+        margin-left: 85px;
+        margin-right: 85px;
+    }
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.5);
     font-size: 18px;
-    justify-content: space-between;
-    width: 380px;
+    font-style: normal;
+    text-transform: uppercase;
 
-    a {
-        color: rgba(255, 255, 255, 0.5);
-        font-style: normal;
-        text-transform: uppercase;
-        
-        &.active {
-            color: white;
-            font-weight: bold;
-        }
+    &.active {
+        color: white;
+        font-weight: bold;
+    }
 
-        &:hover {
-            color: white;
-        }
+    &:hover {
+        color: white;
     }
 }

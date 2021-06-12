@@ -1,7 +1,7 @@
 import ButtonIcon from 'core/components/ButtonIcon';
 import React, { useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { appendErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import AuthCard from '../Card';
 import './styles.scss';
 import { makeLogin } from 'core/utils/request';
@@ -80,7 +80,7 @@ const Login = () => {
                         </div>
                     )}
                 </div>
-                <Link to="/admin/auth/recover" className="login-link-recover">
+                <Link to="/auth/recover" className="login-link-recover">
                     Esqueceu a senha?
                 </Link>
                 <div className="login-submit">
@@ -88,7 +88,7 @@ const Login = () => {
                 </div>
                 <div className="text-center">
                     <span className="not-registered">Não tem Cadastro?</span>
-                    <Link to="/admin/auth/register" className="login-link-register">
+                    <Link to="/auth/register" className="login-link-register">
                         Cadastrar
                     </Link>
                 </div>
