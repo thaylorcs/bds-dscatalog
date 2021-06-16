@@ -7,7 +7,7 @@ type Props = {
     children: React.ReactNode;
 }
 
-const BaseForm = ({title, children} : Props) => {
+const BaseForm = ({ title, children }: Props) => {
 
     const history = useHistory();
     const handleCancel = () => {
@@ -21,11 +21,17 @@ const BaseForm = ({title, children} : Props) => {
             </h1>
             {children}
             <div className="base-form-actions">
-                <button 
+                <button
                     className="btn border-radius-10 mr-3 btn-outline-danger"
                     onClick={handleCancel}
-                >cancelar</button>
-                <button className="btn border-radius-10 mr-3 btn-primary">cadastrar</button>
+                >
+                    CANCELAR
+                </button>
+                <button
+                    className="btn border-radius-10 mr-3 btn-primary"
+                >
+                    SALVAR
+                </button>
             </div>
         </div>
     );

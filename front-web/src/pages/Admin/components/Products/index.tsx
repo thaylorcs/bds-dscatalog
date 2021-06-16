@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import List from './List';
 import Form from './Form';
 
@@ -10,15 +10,12 @@ const Products = () => {
                 <Route path="/admin/products" exact>
                     <List />
                 </Route>
-                <Route path="/admin/products/create">
+                <Route path="/admin/products/:productId">
                     <Form />
                 </Route>
-                <Route path="/admin/products/:productId">
-                    <h1>Alterar um produto</h1>
-                </Route>
-            </Switch>    
+            </Switch>
         </div>
     );
 }
 
-export default Products ;
+export default Products;
