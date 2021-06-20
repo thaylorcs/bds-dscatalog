@@ -14,8 +14,6 @@ const List = () => {
     const [activePage, setActivePage] = useState(0);
     const history = useHistory();
 
-    console.log(productsResponse);
-
     const getProducts = useCallback(() => {
         const params = {
             page: activePage,
