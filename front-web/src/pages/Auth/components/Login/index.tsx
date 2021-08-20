@@ -48,10 +48,6 @@ const Login = () => {
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="margin-bottom-30">
                     <input
-                        type="email"
-                        className={`form-control input-base ${errors.username ? 'is-invalid' : ''}`}
-                        placeholder="Email"
-                        name="username"
                         ref={register({
                             required: "Campo obrigatório",
                             pattern: {
@@ -59,6 +55,10 @@ const Login = () => {
                               message: "Email inválido"
                             }
                           })}
+                        type="email"
+                        className={`form-control input-base ${errors.username ? 'is-invalid' : ''}`}
+                        placeholder="Email"
+                        name="username"
                     />
                     {errors.username && (
                         <div className="invalid-feedback d-block">
@@ -68,11 +68,11 @@ const Login = () => {
                 </div>
                 <div className="margin-bottom-30">
                     <input
+                        ref={register({ required: "Campo obrigatório" })}
                         type="password"
                         placeholder="Senha"
                         className={`form-control input-base ${errors.password ? 'is-invalid' : ''}`}
                         name="password"
-                        ref={register({ required: "Campo obrigatório" })}
                     />
                     {errors.password && (
                         <div className="invalid-feedback d-block">

@@ -21,6 +21,7 @@
     "qs": "^6.9.4",
     "react": "^16.13.1",
     "react-content-loader": "^5.1.2",
+    "react-currency-input-field": "^3.4.2",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.9.6",
     "react-router": "^5.2.0",

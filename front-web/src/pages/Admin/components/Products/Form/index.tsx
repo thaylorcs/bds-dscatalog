@@ -7,8 +7,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import BaseForm from '../../BaseForm';
 import { Category } from 'core/types/Product';
 import './styles.scss';
+import PriceField from './PriceField';
 
-type FormState = {
+export type FormState = {
     name: string;
     price: string;
     description: string;
@@ -94,31 +95,26 @@ const Form = () => {
                         <div className="margin-bottom-30">
                             <Controller
                                 as={Select}
-                                name="categories"
-                                rules={{required: true}}
-                                control={control}
-                                isLoading={isLoadingCategories}
                                 classNamePrefix="categories-select"
-                                isMulti
+                                control={control}
+                                defaultValue=""
                                 getOptionLabel={(option: Category) => option.name}
                                 getOptionValue={(option: Category) => String(option.id)}
+                                isLoading={isLoadingCategories}
+                                isMulti
+                                name="categories"
                                 options={categories}
-                                placeholder="Categorias"
+                                placeholder="Categoria(s)"
+                                rules={{ required: true }}
                             />
                             {errors.categories && (
                                 <div className="invalid-feedback d-block">
-                                    Campo obrigatório
+                                    Campo Obrigatório
                                 </div>
                             )}
                         </div>
                         <div className="margin-bottom-30">
-                            <input
-                                ref={register({ required: "Campo Obrigatório" })}
-                                name="price"
-                                type="number"
-                                className="form-control  input-base"
-                                placeholder="Preço"
-                            />
+                            <PriceField control={control} />
                             {errors.price && (
                                 <div className="invalid-feedback d-block">
                                     {errors.price.message}
@@ -142,8 +138,8 @@ const Form = () => {
                     </div>
                     <div className="col-6">
                         <textarea
-                            name="description"
                             ref={register({ required: "Campo Obrigatório" })}
+                            name="description"
                             className="form-control input-base"
                             placeholder="Descrição"
                             cols={30}
