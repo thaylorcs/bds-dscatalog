@@ -15,6 +15,7 @@ const ProductCardLoader = () => {
                     viewBox="0 0 250 335"
                     backgroundColor="#ecebeb"
                     foregroundColor="#d6d2d2"
+                    key={item}
                 >
                     <rect x="0" y="60" rx="2" ry="2" width="250" height="335" />
                 </ContentLoader>
