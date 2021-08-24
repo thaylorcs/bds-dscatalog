@@ -5,20 +5,24 @@ import Select from 'react-select';
 import { makeRequest } from 'core/utils/request';
 import { Category } from 'core/types/Product';
 
-export type FilterForm = {
-    name?: string;
-    categoryId?: number;
-}
-
 type Props = {
-    onSearch: (filter: FilterForm) => void;
+    name?: string;
+    category?: Category;
+    handleChangeCategory: (category: Category) => void;
+    handleChangeName: (name: string) => void;
+    clearFilters: () => void;
 }
 
-const ProductFilters = ({ onSearch }: Props) => {
+const ProductFilters = (
+    {
+        name,
+        clearFilters,
+        handleChangeCategory,
+        handleChangeName,
+        category
+    }: Props) => {
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [name, setName] = useState('');
-    const [category, setCategory] = useState<Category>();
 
     useEffect(() => {
         setIsLoadingCategories(true);
@@ -27,24 +31,6 @@ const ProductFilters = ({ onSearch }: Props) => {
             .finally(() => setIsLoadingCategories(false));
     }, [])
 
-    const handleChangeName = (name: string) => {
-        setName(name);
-
-        onSearch({ name, categoryId: category?.id })
-    }
-
-    const handleChangeCategory = (category: Category) => {
-        setCategory(category);
-
-        onSearch({ name, categoryId: category?.id })
-    }
-
-    const clearFilters = () => {
-        setCategory(undefined);
-        setName('');
-
-        onSearch({name: '', categoryId: undefined})
-    }
 
     return (
         <div className="card-base product-filters-container">
