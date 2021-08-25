@@ -1,5 +1,5 @@
 .auth-container {
-    background: url(~core/assets/images/auth-background.svg) no-repeat;
+    background: url(~core/assets/images/auth-background.svg) no-repeat bottom;
     background-size: 100%;
     display: flex;
     justify-content: center;
@@ -21,4 +21,17 @@
     line-height: 33px;
     margin-top: 25px;
     margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .auth-info {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-container {
+        margin: 0;
+        padding: 40px 0 0 0;
+    }
 }

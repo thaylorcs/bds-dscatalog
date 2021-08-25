@@ -2,7 +2,7 @@
     padding: 20px 20px 30px 20px;
     text-align: center;
 
-    .produt-price-container{
+    .produt-price-container {
         margin-top: 20px;
     }
 }
@@ -24,4 +24,10 @@
 .product-card-image {
     height: 160px;
     width: 160px;
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        padding: 10px 10px 30px 10px;
+    }
 }

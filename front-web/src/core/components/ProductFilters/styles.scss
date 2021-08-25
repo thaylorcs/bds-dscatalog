@@ -45,3 +45,24 @@
         color: #9e9e9e;
     }
 }
+
+@media (max-width: 768px) {
+    .product-filters-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-filters-container {
+        flex-direction: column;
+        justify-content: space-between;
+        height: 200px;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .filter-select-container {
+        margin: 10px 0px;
+        width: 100%;
+    }
+}

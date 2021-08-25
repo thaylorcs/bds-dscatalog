@@ -34,31 +34,30 @@ const ProductDetails = () => {
                     <ArrowIcon className="icon-goback" />
                     <h1 className="text-goback">voltar</h1>
                 </Link>
-                <div className="row">
-                    <div className="col-6 pr-5">
-                        {isLoading ? <ProductInfoLoader /> : (
-                            <>
-                                <div className="product-details-card text-center">
-                                    <img src={product?.imgUrl} className="product-details-image" alt={product?.name} />
-                                </div>
+                <div className="product-details-info">
+                    {isLoading ? <ProductInfoLoader /> : (
+                        <>
+                            <div className="product-details-card text-center">
+                                <img src={product?.imgUrl} className="product-details-image" alt={product?.name} />
+                            </div>
+                            <div className="product-info-fields">
                                 <h2 className="product-details-name">
                                     {product?.name}
                                 </h2>
                                 {product?.price && <ProductPrice price={product?.price} />}
-                            </>
-                        )}
+                            </div>
+                        </>
+                    )}
 
-                    </div>
-                    <div className="col-6 product-details-card" >
+                    <div className="product-details-card" >
                         {isLoading ? <ProductDescriptionLoader /> : (
                             <>
-                            <h2 className="product-description-title">Descrição do produto</h2>
-                            <p className="product-description-text">
-                                {product?.description}
-                            </p>
-                        </>
+                                <h2 className="product-description-title">Descrição do produto</h2>
+                                <p className="product-description-text">
+                                    {product?.description}
+                                </p>
+                            </>
                         )}
-                        
                     </div>
                 </div>
             </div>
