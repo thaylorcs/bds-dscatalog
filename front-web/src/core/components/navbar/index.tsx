@@ -58,7 +58,11 @@ const Navbar = () => {
                     {drawerActive &&
                         <> {!currentUser &&
                             <li>
-                                <Link to="/auth/login" className="nav-link active" >
+                                <Link
+                                    to="/auth/login"
+                                    className="nav-link active"
+                                    onClick={() => setDrawerActive(false)}
+                                >
                                     LOGIN
                                 </Link>
                             </li>}
