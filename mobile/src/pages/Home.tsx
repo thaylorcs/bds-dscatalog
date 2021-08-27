@@ -1,26 +1,30 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { colors, text, theme } from '../styles';
 
-const Home: React.FC = ({ navigation }) => {
+import arrow from '../assets/arrow.png';
+import draw from '../assets/draw.png';
+
+const Home: React.FC = ({ }) => {
     return (
-        <View>
-            <Text>
-                Bem vindo ao app
-            </Text>
-            <TouchableOpacity
-                style={{
-                    backgroundColor: '#069',
-                    padding: 10,
-                    borderRadius: 4,
-                    width: 150,
-                }}
-
-                onPress={() => navigation.navigate('Catalog')}
-            >
-                <Text >
-                    Clique aqui
-                </Text>
-            </TouchableOpacity>
+        <View style={theme.container}>
+            <View style={theme.card}>
+                <Image source={draw} style={theme.draw} />
+                <View style={theme.textContainer}>
+                    <Text style={text.bold}>
+                        Conheça o melhor catálogo de produtos
+                    </Text>
+                    <Text style={text.regular}>
+                        Ajudaremos você a encontrar os melhores produtos disponíveis no mercado
+                    </Text>
+                </View>
+                <TouchableOpacity style={theme.primaryButton}>
+                    <Text>INICIE AGORA A SUA BUSCA</Text>
+                    <View>
+                        <Image source={arrow} />
+                    </View>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 };
