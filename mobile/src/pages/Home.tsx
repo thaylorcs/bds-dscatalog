@@ -1,11 +1,13 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { colors, text, theme } from '../styles';
+import { useNavigation } from '@react-navigation/native';
 
 import arrow from '../assets/arrow.png';
 import draw from '../assets/draw.png';
 
-const Home: React.FC = ({ }) => {
+const Home: React.FC = () => {
+    const navigation = useNavigation();
     return (
         <View style={theme.container}>
             <View style={theme.card}>
@@ -18,9 +20,13 @@ const Home: React.FC = ({ }) => {
                         Ajudaremos você a encontrar os melhores produtos disponíveis no mercado
                     </Text>
                 </View>
-                <TouchableOpacity style={theme.primaryButton}>
-                    <Text>INICIE AGORA A SUA BUSCA</Text>
-                    <View>
+                <TouchableOpacity
+                    style={theme.primaryButton}
+                    activeOpacity={0.8}
+                    onPress={() => navigation.navigate("Catalog")}
+                >
+                    <Text style={text.primaryText}>INICIE AGORA A SUA BUSCA</Text>
+                    <View style={theme.arrowContainer}>
                         <Image source={arrow} />
                     </View>
                 </TouchableOpacity>

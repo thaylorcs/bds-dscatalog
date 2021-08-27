@@ -13,8 +13,26 @@ const colors = {
 };
 
 const text = StyleSheet.create({
-    regular: {},
-    bold: {},
+    regular: {
+        color: colors.mediumGray,
+        fontSize: 16,
+        fontWeight: '400',
+        textAlign: 'center',
+    },
+    bold: {
+        color: colors.darkGray,
+        fontSize: 26,
+        fontWeight: 'bold',
+        textAlign: "center",
+        marginBottom: 15,
+    },
+    primaryText: {
+        color: colors.white,
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginLeft: 20,
+        textTransform: 'uppercase',
+    },
 });
 
 const theme = StyleSheet.create({
@@ -28,6 +46,7 @@ const theme = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: colors.white,
         borderRadius: 20,
+        justifyContent: 'space-around',
         shadowColor: colors.black,
         shadowOffset: {
             width: 0,
@@ -42,8 +61,28 @@ const theme = StyleSheet.create({
         height: 225,
         width: 313,
     },
-    textContainer: {},
-    primaryButton: {},
+    textContainer: {
+        paddingHorizontal: 20,
+    },
+    primaryButton: {
+        alignItems: 'center',
+        backgroundColor: colors.primary,
+        borderRadius: 10,
+        color: colors.white,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        height: 50,
+        width: 290,
+    },
+    arrowContainer: {
+        alignItems: 'center',
+        backgroundColor: colors.secondary,
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        justifyContent: 'center',
+        width: 50,
+        height: 50,
+    },
 });
 
 export { colors, theme, text };
