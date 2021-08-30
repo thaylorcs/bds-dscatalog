@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native"
 const colors = {
     black: "#000",
     bluePill: "#407bff",
+    borderGray: "#e1e1e1",
     darkGray: "#263238",
     lightGray: "#f2f2f2",
     mediumGray: "#9e9e9e",
@@ -126,6 +127,29 @@ const theme = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 10,
 
+    },
+    inputContainer: {
+        alignItems: 'center',
+        backgroundColor: colors.white,
+        borderRadius: 10,
+        height: 60,
+        justifyContent: "space-around",
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        marginVertical: 12.5,
+        paddingVertical: 10,
+        width: '100%',
+    },
+    searchInput: {
+        borderBottomWidth: 0.5,
+        borderBottomColor: colors.borderGray,
+        height: 40,
+        width: '90%',
     },
 });
 
