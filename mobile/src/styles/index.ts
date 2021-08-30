@@ -128,6 +128,11 @@ const theme = StyleSheet.create({
         marginTop: 10,
 
     },
+    productImg: {
+        height: 140,
+        margin: 16,
+        width: 140,
+    },
     inputContainer: {
         alignItems: 'center',
         backgroundColor: colors.white,
