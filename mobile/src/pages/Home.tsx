@@ -23,7 +23,7 @@ const Home: React.FC = () => {
                 <TouchableOpacity
                     style={theme.primaryButton}
                     activeOpacity={0.8}
-                    onPress={() => navigation.navigate("Catalog")}
+                    onPress={() => navigation.navigate('Catalog')}
                 >
                     <Text style={text.primaryText}>INICIE AGORA A SUA BUSCA</Text>
                     <View style={theme.arrowContainer}>
