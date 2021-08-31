@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native"
+import { Dimensions, StyleSheet } from "react-native";
+
+const deviceWidth = Dimensions.get('window').width;
 
 const colors = {
     black: "#000",
@@ -46,6 +48,25 @@ const text = StyleSheet.create({
     productPrice: {
         color: colors.primary,
         fontSize: 30,
+        fontWeight: 'bold',
+    },
+    goBackText: {
+        color: colors.darkGray,
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginLeft: 15,
+        textTransform: 'uppercase',
+
+    },
+    productDetailsName: {
+        color: colors.darkGray,
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginTop: 10,
+    },
+    productDescription: {
+        color: colors.mediumGray,
+        fontSize: 16,
         fontWeight: 'bold',
     },
 });
@@ -156,6 +177,81 @@ const theme = StyleSheet.create({
         height: 40,
         width: '90%',
     },
+    //Product Details
+    detailContainer: {
+        backgroundColor: colors.white,
+        padding: 20,
+    },
+    detailCard: {
+        backgroundColor: colors.white,
+        borderRadius: 20,
+        justifyContent: 'space-around',
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        height: '100%',
+        padding: 20,
+        width: '90%',
+    },
+    goBackContainer: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        marginVertical: 10,
+        width: 290,
+    },
+    productImageContainer: {
+        alignItems: 'center',
+        borderColor: colors.lightGray,
+        borderWidth: 1,
+        width: '100%',
+    },
+    productImage: {
+        height: 220,
+        width: 220,
+    },
+    scrollTextContainer: {
+        borderColor: colors.lightGray,
+        borderRadius: 15,
+        borderWidth: 0.5,
+        marginVertical: 20,
+        padding: 20,
+    },
 });
 
-export { colors, theme, text };
+const nav = StyleSheet.create({
+    leftText: {
+        color: colors.white,
+        fontWeight: 'bold',
+        marginLeft: 20,
+    },
+    drawer: {
+        margin: 10,
+    },
+    options: {
+        backgroundColor: colors.primary,
+        height: 120,
+        justifyContent: 'space-between',
+        marginTop: 125,
+        marginRight: -10,
+        padding: 20,
+        width: deviceWidth,
+        zIndex: 20,
+    },
+    option: {
+        paddingVertical: 5,
+    },
+    textOption: {
+        color: colors.white,
+        textTransform: 'uppercase',
+    },
+    textActive: {
+        fontWeight: "bold",
+    }
+})
+
+export { colors, theme, text, nav };
