@@ -69,6 +69,16 @@ const text = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    loginTitle: {
+        color: colors.darkGray,
+        fontSize: 30,
+        fontWeight: '400',
+        marginBottom: 50,
+        textTransform: "uppercase",
+    },
+    logoutText: {
+        color: colors.white,
+    },
 });
 
 const theme = StyleSheet.create({
@@ -221,6 +231,45 @@ const theme = StyleSheet.create({
         marginVertical: 20,
         padding: 20,
     },
+    //Login Page
+    loginCard: {
+        alignItems: 'center',
+        backgroundColor: colors.white,
+        borderRadius: 20,
+        justifyContent: 'center',
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        height: '100%',
+        width: '100%',
+    },
+    form: {
+        marginVertical: 10,
+    },
+    passwordGroup: {
+        alignItems: 'center',
+        flexDirection: "row",
+        marginVertical: 25,
+    },
+    textInput: {
+        borderColor: colors.mediumGray,
+        borderWidth: 1,
+        borderRadius: 10,
+        margin: 20,
+        height: 50,
+        padding: 10,
+        width: 290,
+    },
+    toggle: {
+        margin: -50,
+
+    },
+    eyes: {},
+    buttonTextContainer: {},
 });
 
 const nav = StyleSheet.create({
@@ -240,7 +289,6 @@ const nav = StyleSheet.create({
         marginRight: -10,
         padding: 20,
         width: deviceWidth,
-        zIndex: 20,
     },
     option: {
         paddingVertical: 5,
@@ -251,6 +299,16 @@ const nav = StyleSheet.create({
     },
     textActive: {
         fontWeight: "bold",
+    },
+    logoutBtn: {
+        alignItems: 'center',
+        borderColor: colors.white,
+        borderRadius: 10,
+        borderWidth: 1,
+        height: 30,
+        justifyContent: 'center',
+        marginRight: 20,
+        width: 60,
     }
 })
 
