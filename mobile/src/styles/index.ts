@@ -310,6 +310,33 @@ const nav = StyleSheet.create({
         marginRight: 20,
         width: 60,
     }
-})
+});
 
-export { colors, theme, text, nav };
+const tabBar = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        backgroundColor: colors.white,
+        flexDirection: "row",
+        height: 80,
+        justifyContent: 'space-around',
+        width: deviceWidth,
+    },
+    pill: {
+        color: colors.white,
+        backgroundColor: colors.lightGray,
+        borderRadius: 30,
+        padding: 15,
+    },
+    pillActive: {
+        backgroundColor: colors.primary,
+    },
+    pillText: {
+        fontWeight: 'bold',
+        color: colors.mediumGray,
+    },
+    pillTextActive: {
+        color: colors.white,
+    },
+});
+
+export { colors, theme, text, nav, tabBar };
