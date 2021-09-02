@@ -3,7 +3,7 @@ import { ProductCard, SearchInput } from '../components';
 import { ScrollView } from 'react-native-gesture-handler';
 import { theme } from '../styles';
 import { useState } from 'react';
-import { api } from '../services';
+import { api, getProducts } from '../services';
 import { ActivityIndicator } from 'react-native';
 
 const Catalog: React.FC = () => {
@@ -13,7 +13,7 @@ const Catalog: React.FC = () => {
 
     async function fillProducts() {
         setLoading(true);
-        const res = await api.get(`/products?page=0&linesPerPage=12&direction=ASC&orderBy=name`);
+        const res = await getProducts();
         setProducts(res.data.content);
         setLoading(false);
     }
@@ -34,9 +34,11 @@ const Catalog: React.FC = () => {
             />
             {loading
                 ? (<ActivityIndicator size="large" />)
-                : data.map((product) => (
-                    <ProductCard {...product} key={product.id} />
-                ))}
+                    : data.map((product) => (
+                        <ProductCard {...product} key={product.id} />
+                    )
+                )
+            }
         </ScrollView>
     )
 };

@@ -5,8 +5,7 @@ import eyesOpened from '../assets/eyes-opened.png';
 import eyesClosed from '../assets/eyes-closed.png';
 import arrow from '../assets/arrow.png';
 import { text, theme } from '../styles';
-import { isAuthenticated, login } from '../services/auth';
-import { useEffect } from 'react';
+import { login } from '../services/auth';
 import { useNavigation } from '@react-navigation/native';
 
 const Login: React.FC = () => {
