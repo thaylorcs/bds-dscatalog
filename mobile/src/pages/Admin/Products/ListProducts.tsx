@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { ProductCard, SearchInput } from '../../../components';
 
-import { SearchInput, ProductCard } from '../../components';
-import { getProducts } from '../../services';
-import { admin, text } from '../../styles';
+import { getProducts } from '../../../services';
+import { admin, text } from '../../../styles';
 
-const Products = () => {
+interface ProductProps {
+    setScreen: Function;
+}
+
+const Products: React.FC<ProductProps> = (props) => {
 
     const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const { setScreen } = props;
 
     useEffect(() => {
         fillProducts();
@@ -33,7 +38,10 @@ const Products = () => {
 
     return (
         <ScrollView contentContainerStyle={admin.container}>
-            <TouchableOpacity style={admin.addButton}>
+            <TouchableOpacity
+                style={admin.addButton}
+                onPress={() => setScreen("newProduct")}
+            >
                 <Text style={text.addButtonText}>
                     Adicionar
                 </Text>
