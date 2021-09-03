@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import arrow from '../../../assets/leftArrow.png';
 
 import {
@@ -12,6 +12,7 @@ import {
 
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { colors, text, theme } from '../../../styles';
+import { getCategories } from '../../../services';
 
 interface FormProductProps {
     setScreen: Function,
@@ -22,32 +23,26 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
 
     const [loading, setLoading] = useState(false);
     const [edit, setEdit] = useState(false);
-    const [categories, setCategories] = useState([
-        {
-            id: 1,
-            name: "Eletrônicos"
-        },
-        {
-            id: 2,
-            name: "Computadores"
-        },
-        {
-            id: 3,
-            name: "Livros"
-        },
-        {
-            id: 4,
-            name: "Jardim"
-        },
-    ]);
+    const [categories, setCategories] = useState();
     const [showCategories, setShowCategories] = useState(false);
     const [product, setProduct] = useState({
-        name: null,
-        description: null,
-        imgUrl: null,
-        price: null,
-        categories: null,
+        name: "",
+        description: "",
+        imgUrl: "",
+        price: 0,
+        categories: [],
     });
+
+    async function loadCategories() {
+        setLoading(true);
+        const res = await getCategories();
+        setCategories(res.data.content);
+        setLoading(false);
+    }
+
+    useEffect(() => { 
+        loadCategories();
+    }, []);
 
     return (
         <View style={theme.formContainer}>
@@ -66,8 +61,8 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
                             >
                                 <View style={theme.modalContainer}>
                                     <ScrollView contentContainerStyle={theme.modalContent}>
-                                        {categories.map(
-                                            cat => (
+                                        {categories && categories.map(
+                                            (cat) => (
                                                 <TouchableOpacity
                                                     style={theme.modalItem}
                                                     key={cat.id}
@@ -95,7 +90,7 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
                                 onPress={() => setShowCategories(!showCategories)}
                                 style={theme.selectInput}
                             >
-                                <Text style={product.categories === null && { color: colors.darkGray }}>
+                                <Text style={product.categories === "" && { color: colors.darkGray }}>
                                     {product.categories === null
                                         ? 'Escolha uma categoria'
                                         : product.categories

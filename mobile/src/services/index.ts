@@ -10,3 +10,8 @@ export function getProducts() {
     const res = api.get(`/products?page=0&linesPerPage=12&direction=ASC&orderBy=name`);
     return res;
 }
+
+export function getCategories() {
+    const res = api.get(`/categories?direction=ASC&orderBy=name`);
+    return res;
+}
