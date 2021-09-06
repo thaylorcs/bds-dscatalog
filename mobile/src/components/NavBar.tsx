@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, TouchableOpacity, Text } from 'react-native';
+import { View, Image, TouchableOpacity, Text, TouchableNativeFeedback } from 'react-native';
 import { nav, text } from '../styles';
 import menu from '../assets/menu.png';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -52,7 +52,7 @@ const NavBar: React.FC = () => {
                     {show ?
 
                         <View style={nav.options}>
-                            <TouchableOpacity
+                            <TouchableNativeFeedback
                                 style={nav.option}
                                 onPress={() => navigate("Home")}
                             >
@@ -63,8 +63,8 @@ const NavBar: React.FC = () => {
                                 >
                                     Home
                                 </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
+                            </TouchableNativeFeedback>
+                            <TouchableNativeFeedback
                                 style={nav.option}
                                 onPress={() => navigate("Catalog")}
                             >
@@ -75,8 +75,8 @@ const NavBar: React.FC = () => {
                                 >
                                     Catálogo
                                 </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
+                            </TouchableNativeFeedback>
+                            <TouchableNativeFeedback
                                 style={nav.option}
                                 onPress={() => navigate("Login")}
                             >
@@ -84,7 +84,7 @@ const NavBar: React.FC = () => {
                                     style={[nav.textOption,
                                     route.name === "Login" ? nav.textActive : null,
                                     ]}>ADM</Text>
-                            </TouchableOpacity>
+                            </TouchableNativeFeedback>
                         </View>
 
                         : null}

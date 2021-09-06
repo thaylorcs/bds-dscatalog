@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ProductCard, SearchInput } from '../../../components';
 
-import { getProducts } from '../../../services';
+import { deleteProduct, getProducts } from '../../../services';
 import { admin, text } from '../../../styles';
 
 interface ProductProps {
@@ -18,6 +18,19 @@ const Products: React.FC<ProductProps> = (props) => {
 
     const { setScreen } = props;
 
+    async function handleDelete(id: number) {
+        setLoading(true);
+        const res = await deleteProduct(id);
+        fillProducts();
+    }
+
+    async function fillProducts() {
+        setLoading(true);
+        const res = await getProducts();
+        setProducts(res.data.content);
+        setLoading(false);
+    }
+
     useEffect(() => {
         fillProducts();
     }, []);
@@ -27,14 +40,6 @@ const Products: React.FC<ProductProps> = (props) => {
             product.name.toLowerCase().includes(search.toLowerCase())
         )
         : products;
-
-    async function fillProducts() {
-        setLoading(true);
-        const res = await getProducts();
-        setProducts(res.data.content);
-        setLoading(false);
-    }
-
 
     return (
         <ScrollView contentContainerStyle={admin.container}>
@@ -54,7 +59,7 @@ const Products: React.FC<ProductProps> = (props) => {
             {loading
                 ? (<ActivityIndicator size="large" />)
                 : data.map((product) => (
-                    <ProductCard {...product} key={product.id} role="admin" />
+                    <ProductCard {...product} key={product.id} role="admin" handleDelete={handleDelete} />
                 )
                 )
             }
