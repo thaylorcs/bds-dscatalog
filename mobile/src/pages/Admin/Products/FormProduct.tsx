@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import arrow from '../../../assets/leftArrow.png';
 
 import {
     View,
@@ -11,11 +10,13 @@ import {
     Alert
 } from 'react-native';
 
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
-import { colors, text, theme } from '../../../styles';
-import { createProduct, getCategories } from '../../../services';
+import * as ImagePicker from 'expo-image-picker';
 import Toast from 'react-native-tiny-toast';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { createProduct, getCategories, uploadImage } from '../../../services';
 import { TextInputMask } from 'react-native-masked-text';
+import { colors, text, theme } from '../../../styles';
+import arrow from '../../../assets/leftArrow.png';
 
 interface FormProductProps {
     setScreen: Function,
@@ -35,6 +36,43 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         price: '',
         categories: [],
     });
+
+    const [image, setImage] = useState('');
+
+    useEffect(() => {
+        async () => {
+
+            const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+            if (status !== 'granted') {
+                Alert.alert("Precisamos de acesso à biblioteca de imagens");
+            }
+        };
+    }, [])
+
+
+    async function selectImage() {
+        const result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        setImage(result.uri);
+    }
+
+    async function handleUpload() {
+        uploadImage(image).then((res) => {
+            const { uri } = res?.data;
+            setProduct({
+                ...product, imgUrl: uri
+            });
+        });
+    }
+
+    useEffect(() => {
+        image ? handleUpload() : null
+    }, [image])
 
     function handleSave() {
         !edit && newProduct();
@@ -156,10 +194,27 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 style={theme.uploadBtn}
+                                onPress={selectImage}
                             >
                                 <Text style={text.uploadText}>Carregar Imagem</Text>
                             </TouchableOpacity>
                             <Text style={text.fileSize}>As imagens devem estar no formato JPG ou PNG e não podem ultrapassar 5MB</Text>
+                            {
+                                image != "" && (
+                                    <TouchableOpacity
+                                        onPress={selectImage}
+                                        activeOpacity={0.9}
+                                        style={{
+                                            width: "100%",
+                                            height: 150,
+                                            borderRadius: 10,
+                                            marginVertical: 10,
+                                        }}
+                                    >
+                                        <Image source={{ uri: image }} style={{ width: "100%", height: "100%", borderRadius: 10 }} />
+                                    </TouchableOpacity>
+                                )
+                            }
                             <TextInput
                                 multiline
                                 placeholder="Descrição"
