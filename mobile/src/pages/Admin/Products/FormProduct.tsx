@@ -15,6 +15,7 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { colors, text, theme } from '../../../styles';
 import { createProduct, getCategories } from '../../../services';
 import Toast from 'react-native-tiny-toast';
+import { TextInputMask } from 'react-native-masked-text';
 
 interface FormProductProps {
     setScreen: Function,
@@ -31,7 +32,7 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         name: "",
         description: "",
         imgUrl: "",
-        price: 0,
+        price: '',
         categories: [],
     });
 
@@ -44,6 +45,7 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         const cat = replaceCategory();
         const data = {
             ...product,
+            price: getRaw(),
             categories: [
                 {
                     id: cat,
@@ -71,6 +73,12 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
         const res = await getCategories();
         setCategories(res.data.content);
         setLoading(false);
+    }
+
+    function getRaw() {
+        const str = product.price;
+        const res = str.slice(2).replace(/\./g, "").replace(/,/g, ".");
+        return res;
     }
 
     useEffect(() => {
@@ -135,12 +143,14 @@ const FormProduct: React.FC<FormProductProps> = (props) => {
                                     }
                                 </Text>
                             </TouchableOpacity>
-                            <TextInput
+
+                            <TextInputMask
+                                type="money"
                                 placeholder="Preço"
                                 style={theme.formInput}
                                 value={product.price}
                                 onChangeText={(e) => {
-                                    setProduct({ ...product, price: parseInt(e) })
+                                    setProduct({ ...product, price: e })
                                 }}
                             />
                             <TouchableOpacity
