@@ -38,6 +38,22 @@ export async function deleteProduct(id: number) {
     });
 }
 
+export async function getProduct(id: number) {
+    const res = await api.get(`/products/${id}`);
+    return res;
+}
+
+export async function updateProduct(data: object) {
+    const authToken = await userToken();
+    const res = await api.put(`/products/${data.id}`, data, {
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+        },
+    });
+    return res;
+
+}
+
 export function getCategories() {
     const res = api.get(`/categories?direction=ASC&orderBy=name`);
     return res;

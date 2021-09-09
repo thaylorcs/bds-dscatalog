@@ -389,6 +389,7 @@ const theme = StyleSheet.create({
         borderColor: colors.mediumGray,
         borderRadius: 10,
         borderWidth: 1,
+        maxWidth: '100%',
         height: 200,
         padding: 10,
         width: '100%',
